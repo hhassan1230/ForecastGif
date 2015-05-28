@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524235948) do
+ActiveRecord::Schema.define(version: 20150528003400) do
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string "url"
+  end
 
   create_table "forecasts", force: :cascade do |t|
     t.string   "weather"
@@ -19,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150524235948) do
     t.float    "lat"
     t.float    "long"
     t.time     "time"
-    t.string   "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

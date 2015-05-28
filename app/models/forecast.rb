@@ -16,8 +16,7 @@ class Forecast < ActiveRecord::Base
 		file = open(@the_call)
 		read = File.read(file)
 		@hash_weather = JSON.parse(read)
-		# binding.pry
-		# return hash_weather
+		@hash_weather
 	end
 
 

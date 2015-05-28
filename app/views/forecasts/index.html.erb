@@ -1,3 +1,24 @@
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <center><h1>It is</h1></center>
 <center><h1><%= @forecast["currently"]["apparentTemperature"].round%>% Out</h1></center>
-<center><h1><%= Time.now.strftime "%H:%M %P" %></h1></center>
+
+<center><h1><a href="//giphy.com/embed/Qmmpdnp8SicWQ?html5=true" data-src="//giphy.com/embed/Qmmpdnp8SicWQ?html5=true" class="gifLinks"> <%= @forecast["currently"]["summary"] %></a></h1></center>
+<center><h1><%= Time.now.strftime "%l:%M %P" %></h1></center>
+
+<% img_url = Background.new(@forecast["currently"]["icon"]).url %>
+
+<img id="background" class="background" src=<%= img_url %>>
+
+<!-- <div id="giphy"><iframe src="//giphy.com/embed/Qmmpdnp8SicWQ?html5=true" width="480" height="264" frameBorder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></center> -->
+
+<!-- <img src="https://download.unsplash.com/photo-1429095687696-3227bb0aa9a8"> -->
+<!-- <a href="awesome.html" data-src="./img/awesome.gif"> Check this out! </a> -->
+
+<!-- <script>
+window.onload = function() {
+    // Add GifLinks to all anchor tags on the page!
+    var element = document.querySelector( 'a' );
+    GifLinks( element );
+}
+</script> -->
