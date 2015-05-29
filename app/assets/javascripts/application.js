@@ -15,13 +15,3 @@
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
-// $(document).ready(function(){
-// 	debugger
-// 	// $('#giphy iframe')[0].src
-	
-
-// });
-
-// randGif = function(weather){
-// 	debugger
-// };
