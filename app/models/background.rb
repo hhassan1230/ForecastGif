@@ -1,7 +1,7 @@
 class Background < ActiveRecord::Base
-	attr_reader :url
+	attr_reader :url, :summary, :gif
 	def initialize(summary)
-
+		@summary = summary
 		final_array = []
 		pic_hash = {
 		"snow" => ["photo-1427955569621-3e494de2b1d2",
@@ -99,5 +99,12 @@ class Background < ActiveRecord::Base
 		}
 		final_array << pic_hash[summary].sample
 		@url = "https://download.unsplash.com/#{final_array[0]}"
+		@gif = get_gify(@summary)
+	end
+	def get_gify(summary)
+		weather_search = summary.gsub("partly-", "").gsub("-", "+").downcase
+		gif_url = "http://api.giphy.com/v1/gifs/search?q=#{weather_search}&api_key=dc6zaTOxFJmzC"
+		gif_hash = JSON.parse(File.read(open(gif_url)))
+		gif_hash["data"].sample["images"]["original"]["url"]
 	end
 end

@@ -1,18 +1,19 @@
 <!-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 		<br><br><br>
+		<% background = Background.new(@forecast["currently"]["icon"]) %>
 <div id="wrap">
 	<div id="inside">
 <center><h1>It is</h1></center>
 <center><h1><%= @forecast["currently"]["apparentTemperature"].round%>°</h1></center>
 <center><h1> in <%= @forecast["timezone"].match(/\/(.+)$/)[1].gsub("_", " ").titleize %></h1></center>
-<center><h1><a data-src="http://i.giphy.com/Lf7S35005DWPC.gif"><%= @forecast["currently"]["summary"] %></a></h1></center>
+<!-- this is where thr gify logic goes in -->
+<center><h1><a data-src=<%= background.gif %>><%= @forecast["currently"]["summary"] %></a></h1></center>
 <center><h1><%= Time.now.strftime "%l:%M %P" %></h1></center>
 	</div>
 </div>
+<!-- <div id="caption"><h5>Powered By Giphy</h5></div> -->
 
-<% img_url = Background.new(@forecast["currently"]["icon"]).url %>
-
-<img id="background" class="background" src=<%= img_url %>>
+<img id="background" class="background" src=<%= background.url %>>
 
 <!-- <div id="giphy"><iframe src="//giphy.com/embed/Qmmpdnp8SicWQ?html5=true" width="480" height="264" frameBorder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></center> -->
 

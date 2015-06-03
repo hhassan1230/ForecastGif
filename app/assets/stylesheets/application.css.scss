@@ -128,10 +128,13 @@ article .no-link {
 	margin-left: 8px;
 	color: #111;
 }
-
+#caption {
+	position: bottom; 
+}
 #wrap {
     /* Your styling. */
-    position: absolute;
+    position: fixed;
+    // position: absolute;
     z-index: 999999;
     right: 0;
     height: 60%;
