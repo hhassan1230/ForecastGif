@@ -31,7 +31,7 @@ class Background < ActiveRecord::Base
 			"reserve/MTuhqSiPQbeVnaIYU16X_P1160798_adj.jpg",
 			"photo-1418065460487-3e41a6c84dc5",
 			"uploads/14115409319165441c030/a1d0230a"],
-			"sunny" => ["uploads/14126758789351371c7ec/aa322c2d",
+		"sunny" => ["uploads/14126758789351371c7ec/aa322c2d",
 			"photo-1428908799722-0a74e26ce7f6",
 			"photo-1428604467652-115d9d71a7f1",
 			"reserve/QTrNn7DETWGsjyS5L2n5__MG_8345.jpg",
