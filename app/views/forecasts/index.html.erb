@@ -8,7 +8,7 @@
 <center><h1> in <%= @forecast["timezone"].match(/\/(.+)$/)[1].gsub("_", " ").titleize %></h1></center>
 <!-- this is where thr gify logic goes in -->
 <center><h1><a data-src=<%= background.gif %>><%= @forecast["currently"]["summary"] %></a></h1></center>
-<center><h1><%= (Time.at(@forecast["currently"]["time"]).to_time).strftime "%l:%M %P" %></h1></center>
+<center><h1><%= ((Time.at(@forecast["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P" %></h1></center>
 	</div>
 </div>
 <!-- <div id="caption"><h5>Powered By Giphy</h5></div> -->
