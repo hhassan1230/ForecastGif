@@ -3,7 +3,6 @@
 		<% background = Background.new(@forecast["currently"]["icon"]) %>
 <div id="wrap">
 	<div id="inside">
-<center><h1>It is</h1></center>
 <center><h1><%= @forecast["currently"]["apparentTemperature"].round%>°</h1></center>
 <center><h1> in <%= @forecast["timezone"].match(/\/(.+)$/)[1].gsub("_", " ").titleize %></h1></center>
 <!-- this is where thr gify logic goes in -->
