@@ -1,21 +1,21 @@
 
-		<br><br><br>
-		<% background = Background.new(@forecast["currently"]["icon"]) %>
-<div id="wrap">
-	<div id="inside">
-<center><h1><%= @forecast["currently"]["apparentTemperature"].round%>°</h1></center>
-<center><h1> in <%= @forecast["timezone"].match(/\/(.+)$/)[1].gsub("_", " ").titleize %></h1></center>
-<!-- this is where thr gify logic goes in -->
-<center><h1><a data-src=<%= background.gif %>><%= @forecast["currently"]["summary"] %></a></h1></center>
-<center><h1><%= ((Time.at(@forecast["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P" %></h1></center>
-	</div>
-</div>
-<!-- <div id="caption"><h5>Powered By Giphy</h5></div> -->
-<img id="background" class="background" src=<%= background.url %>>
 <script>
-window.onload = function() {
-    // Add GifLinks to all anchor tags on the page!
-    var element = document.querySelector( 'a' );
-    GifLinks( element );
-}
+$(function(){
+	var longitude, latitude;
+  navigator.geolocation.getCurrentPosition(function(position){
+    var longitude = position.coords.longitude
+    var latitude = position.coords.latitude
+    $.get('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
+    	$('body').html(response);
+    	var element = document.querySelector( 'a' );
+	    GifLinks( element );
+    })
+  }, function(){
+    $.get('/get_weather', null, function (response) {
+    	$('body').html(response);
+    	var element = document.querySelector( 'a' );
+	    GifLinks( element );
+    })
+  })
+});
 </script>

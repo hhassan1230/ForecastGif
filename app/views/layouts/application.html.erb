@@ -6,6 +6,13 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
+<!-- <script>
+window.onload = function() {
+    // Add GifLinks to all anchor tags on the page!
+    var element = document.querySelector( 'a' );
+    GifLinks( element );
+}
+</script> -->
 </head>
 <body>
 

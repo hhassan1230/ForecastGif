@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'forecasts#index'
-
+  get "get_weather" => "forecasts#get_weather"
+  resources :forecasts
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
