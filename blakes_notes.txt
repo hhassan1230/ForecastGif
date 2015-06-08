@@ -1,0 +1,6 @@
+blank page
+just javascript that gets my location
+javascript submit ajax request
+server will render HTML, with that weather data
+javascript ajax gets called back
+$("body").append(response)
