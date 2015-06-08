@@ -103,7 +103,7 @@ class Background < ActiveRecord::Base
 	end
 	def get_gify(summary)
 		weather_search = summary.gsub("partly-", "").gsub("-", "+").downcase
-		gif_url = "http://api.giphy.com/v1/gifs/search?q=#{weather_search}&api_key=dc6zaTOxFJmzC"
+		gif_url = "http://api.giphy.com/v1/gifs/search?q=#{weather_search}&api_key=#{ENV["GIFKEY"]}"
 		gif_hash = JSON.parse(File.read(open(gif_url)))
 		gif_hash["data"].sample["images"]["original"]["url"]
 	end
