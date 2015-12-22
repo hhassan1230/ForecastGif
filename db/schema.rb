@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150528003400) do
     t.float    "lat"
     t.float    "long"
     t.time     "time"
+    t.string   "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
