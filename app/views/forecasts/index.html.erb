@@ -5,7 +5,8 @@ $(function(){
   navigator.geolocation.getCurrentPosition(function(position){
     var longitude = position.coords.longitude
     var latitude = position.coords.latitude
-    $.get('/get_weather', {longitude: longitude, latitude: latitude}, function (response) {
+    var current_time = new Date();
+    $.get('/get_weather', {longitude: longitude, latitude: latitude, time: current_time}, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );
 	    GifLinks( element );
