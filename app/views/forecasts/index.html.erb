@@ -5,11 +5,31 @@ $(function(){
   navigator.geolocation.getCurrentPosition(function(position){
     var longitude = position.coords.longitude
     var latitude = position.coords.latitude
-    var current_time = new Date();
     var time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    // var date = new Date();
-    // var options = { hour: 'numeric', minute: 'numeric', hour12: true };
-    // var current_time = date.toLocaleString('en-US', options);
+    var checkTime = function(i) {
+        if (i < 10) {
+            i = "0" + i
+        };
+        return i;
+    }
+    var checkForPM = function(i){
+      if (i > 12) {
+        return ' pm'
+      } else {
+        return ' am'
+      }
+    }
+    var getCurrentTime = function(){
+      var currentDate = new Date();
+      var hour = currentDate.getHours() % 12 || 12;
+      var pmOrAm = checkForPM(currentDate.getHours());
+      var minute = checkTime(currentDate.getMinutes());
+      var second = checkTime(currentDate.getSeconds());
+
+      var finalTime = hour+':'+minute+pmOrAm
+      return (finalTime);
+    }
+    var current_time = getCurrentTime();
     $.get('/get_weather', {longitude: longitude, latitude: latitude, time: current_time, time_zone: time_zone}, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );

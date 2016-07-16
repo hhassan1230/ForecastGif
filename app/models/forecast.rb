@@ -27,12 +27,7 @@ class Forecast < ActiveRecord::Base
 		read = File.read(file)
 		@hash_weather = JSON.parse(read)
 		if @time && @time_zone
-			zone = ActiveSupport::TimeZone.new(@time_zone)
-			d = DateTime.parse(@time)
-			formated_time = d.in_time_zone(zone)
-			# final_date = ((Time.at(d).to_time) - 4.hours).strftime "%l:%M %P" #Just incase this solution breaks
-			final_date = ((Time.at(d).to_time)).strftime "%l:%M %P"
-			@hash_weather["currently"]["time"] = final_date
+			@hash_weather["currently"]["time"] = @time
 		else
 			if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)
 				@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P"
