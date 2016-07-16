@@ -6,6 +6,9 @@ $(function(){
     var longitude = position.coords.longitude
     var latitude = position.coords.latitude
     var current_time = new Date();
+    // var date = new Date();
+    // var options = { hour: 'numeric', minute: 'numeric', hour12: true };
+    // var current_time = date.toLocaleString('en-US', options);
     $.get('/get_weather', {longitude: longitude, latitude: latitude, time: current_time}, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );

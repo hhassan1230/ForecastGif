@@ -27,14 +27,14 @@ class Forecast < ActiveRecord::Base
 		@hash_weather = JSON.parse(read)
 		if @time
 			d = DateTime.parse(@time)
-			final_date = ((Time.at(d).to_time)).strftime "%l:%M %P"
+			final_date = ((Time.at(d).to_time) - 4.hours).strftime "%l:%M %P"
 			@hash_weather["currently"]["time"] = final_date
-		else
-			if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)
-				@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P"
-			else
-				@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 5.hours).strftime "%l:%M %P"
-			end 
+		# else
+		# 	if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)
+		# 		@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P"
+		# 	else
+		# 		@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 5.hours).strftime "%l:%M %P"
+		# 	end 
 		end
 		@hash_weather
 	end
