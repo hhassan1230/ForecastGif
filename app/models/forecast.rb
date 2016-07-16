@@ -5,11 +5,12 @@ class Forecast < ActiveRecord::Base
 		geocoded_by :ip_address,
 	  	:latitude => :lat, :longitude => :long
 		# after_validation :geocode
-	def initialize(ip=nil, location={}, time=nil)
+	def initialize(ip=nil, location={}, time=nil, time_zone=nil)
 		@ip_address = ip
 		geo_stats = {}
-		if time
+		if time && time_zone
 			@time = time
+			@time_zone = time_zone
 		end
 		if location["latitude"] && location["longitude"]
 			@latitude = location["latitude"].round(2)
@@ -25,16 +26,19 @@ class Forecast < ActiveRecord::Base
 		file = open(@the_call)
 		read = File.read(file)
 		@hash_weather = JSON.parse(read)
-		if @time
+		if @time && @time_zone
+			zone = ActiveSupport::TimeZone.new(@time_zone)
 			d = DateTime.parse(@time)
-			final_date = ((Time.at(d).to_time) - 4.hours).strftime "%l:%M %P"
+			formated_time = d.in_time_zone(zone)
+			# final_date = ((Time.at(d).to_time) - 4.hours).strftime "%l:%M %P" #Just incase this solution breaks
+			final_date = ((Time.at(d).to_time)).strftime "%l:%M %P"
 			@hash_weather["currently"]["time"] = final_date
-		# else
-		# 	if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)
-		# 		@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P"
-		# 	else
-		# 		@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 5.hours).strftime "%l:%M %P"
-		# 	end 
+		else
+			if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)
+				@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 4.hours).strftime "%l:%M %P"
+			else
+				@hash_weather["currently"]["time"] = ((Time.at(@hash_weather["currently"]["time"]).to_time) - 5.hours).strftime "%l:%M %P"
+			end 
 		end
 		@hash_weather
 	end
