@@ -4,7 +4,7 @@ class ForecastsController < ApplicationController
 
 
 	def get_weather
-		if params["latitude"]
+		if params["latitude"] != ""
 			@forecast = Forecast.new(nil, {"latitude"=> params["latitude"].to_f, "longitude" => params["longitude"].to_f}, params["time"], params["time_zone"]).hash_weather
 			render 'geoindex'
 		else
@@ -13,7 +13,7 @@ class ForecastsController < ApplicationController
 			else
 				ip = request.remote_ip
 			end
-			@forecast = Forecast.new(ip).hash_weather
+			@forecast = Forecast.new(ip, {}, params["time"], params["time_zone"]).hash_weather
 			render 'geoindex'
 		end
 	end

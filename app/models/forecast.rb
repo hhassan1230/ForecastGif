@@ -8,10 +8,7 @@ class Forecast < ActiveRecord::Base
 	def initialize(ip=nil, location={}, time=nil, time_zone=nil)
 		@ip_address = ip
 		geo_stats = {}
-		if time && time_zone
-			@time = time
-			@time_zone = time_zone
-		end
+		@time = time
 		if location["latitude"] && location["longitude"]
 			@latitude = location["latitude"].round(2)
 			@longitude = location["longitude"].round(2)
@@ -26,7 +23,7 @@ class Forecast < ActiveRecord::Base
 		file = open(@the_call)
 		read = File.read(file)
 		@hash_weather = JSON.parse(read)
-		if @time && @time_zone
+		if @time
 			@hash_weather["currently"]["time"] = @time
 		else
 			if ((Time.at(@hash_weather["currently"]["time"]).to_time)).month == (2...11)

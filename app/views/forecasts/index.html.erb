@@ -1,42 +1,43 @@
 
 <script>
+  var time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  var checkTime = function(i) {
+      if (i < 10) {
+          i = "0" + i
+      };
+      return i;
+  }
+  var checkForPM = function(i){
+    if (i >= 12) {
+      return ' pm'
+    } else {
+      return ' am'
+    }
+  }
+  var getCurrentTime = function(){
+    var currentDate = new Date();
+    var hour = currentDate.getHours() % 12 || 12;
+    var pmOrAm = checkForPM(currentDate.getHours());
+    var minute = checkTime(currentDate.getMinutes());
+    var second = checkTime(currentDate.getSeconds());
+    var finalTime = hour+':'+minute+pmOrAm
+    return (finalTime);
+  }
+  var current_time = getCurrentTime();
 $(function(){
 	var longitude, latitude;
-  navigator.geolocation.getCurrentPosition(function(position){
-    var longitude = position.coords.longitude
-    var latitude = position.coords.latitude
-    var time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var checkTime = function(i) {
-        if (i < 10) {
-            i = "0" + i
-        };
-        return i;
-    }
-    var checkForPM = function(i){
-      if (i >= 12) {
-        return ' pm'
-      } else {
-        return ' am'
-      }
-    }
-    var getCurrentTime = function(){
-      var currentDate = new Date();
-      var hour = currentDate.getHours() % 12 || 12;
-      var pmOrAm = checkForPM(currentDate.getHours());
-      var minute = checkTime(currentDate.getMinutes());
-      var second = checkTime(currentDate.getSeconds());
 
-      var finalTime = hour+':'+minute+pmOrAm
-      return (finalTime);
-    }
-    var current_time = getCurrentTime();
+  navigator.geolocation.getCurrentPosition(function(position){
+    longitude = position.coords.longitude
+    latitude = position.coords.latitude
+
     $.get('/get_weather', {longitude: longitude, latitude: latitude, time: current_time, time_zone: time_zone}, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );
 	    GifLinks( element );
     })
   }, function(){
-    $.get('/get_weather', null, function (response) {
+    $.get('/get_weather', {longitude: null, latitude: null, time: current_time}, function (response) {
     	$('body').html(response);
     	var element = document.querySelector( 'a' );
 	    GifLinks( element );
