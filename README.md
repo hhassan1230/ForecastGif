@@ -2,38 +2,40 @@
 
 ## Description
 
-Add a short description of your app.
+Find the weather in your area with a great random giphy to go along with it!
 
 ## Screenshots
 
-Add some spiffy screenshots of your app here.
+![forcastgifscreen](https://cloud.githubusercontent.com/assets/9095253/17880692/1c7895e0-68cc-11e6-8a07-83569e0f1315.png)
 
 ## Background
 
-Why did you want to make this app? What was your development process
-like?
+I wanted to make this App because I felt checking the weather was not funny enough. The development process
+was mostly me poking around in the dark as I used javascript in my rails app for the first time ever.
 
 ## Features
 
-Bullet point some of the key features of your app here.
+- Uses Browser Location to find your location.
+- Uses Weather Underground API to get accurate weather data.
+- Uses a awesome library made by Tim Holman called (http://tholman.com/giflinks/) to show a gif on hover of the weather.
 
 ## Usage
 
-How do users use your app?
+Go to forecastgif.herokuapp.com and enjoy!
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+This app was a one off but if you'd like to colaborate in the future feel free to reachout.
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+I would like to make an app similar to this that would support mobile.
 
 ## Author
 
-Link to your blog, twitter, etc!
+blog: https://hhassan2015.wordpress.com/, 
+twitter: @hessvacio
+site: hessvacio.com
 
 ## License
 
