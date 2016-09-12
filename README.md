@@ -33,9 +33,9 @@ I would like to make an app similar to this that would support mobile.
 
 ## Author
 
-blog: https://hhassan2015.wordpress.com/, 
-twitter: @hessvacio
-site: hessvacio.com
+blog: https://hhassan2015.wordpress.com/ <br />
+twitter: @hessvacio <br />
+site: hessvacio.com <br />
 
 ## License
 
